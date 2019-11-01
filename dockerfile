@@ -32,7 +32,9 @@ RUN stop-service MSSQLSERVER ; \
 #Install Chocolatey
 RUN powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
 
-COPY ./ODAC122010Xcopy_x64 c:/install
+COPY ./ODAC122010Xcopy_x64.zip c:/
+
+RUN Expand-Archive -Path .\ODAC122010Xcopy_x64.zip -DestinationPath ./install -Force
 
 WORKDIR c:/install
 
